@@ -208,10 +208,7 @@ class ScriptViewModel : ViewModel() {
                 val response = client.newCall(request).execute()
                 if (response.isSuccessful) {
                     val content = response.body?.string() ?: ""
-                    // Save to local storage
-                    val context = viewModelScope.coroutineContext[androidx.compose.ui.platform.AndroidUiDispatcher.Main]?.let {
-                        // This would need proper context injection
-                    }
+                    // TODO: Save to local storage - needs context
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
