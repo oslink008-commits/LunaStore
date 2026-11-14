@@ -31,8 +31,6 @@ import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.lunastore.app.ui.theme.LunaStoreTheme
-import com.lunastore.app.ShizukuManager
-import com.lunastore.app.ShizukuStatusIndicator
 
 class MainActivity : ComponentActivity() {
 
@@ -74,10 +72,6 @@ fun LunaStoreApp(viewModel: ScriptViewModel = viewModel()) {
     val isLocked by viewModel.isLocked.collectAsState()
     val expandedScriptId by viewModel.expandedScriptId.collectAsState()
 
-    val shizukuManager: ShizukuManager = viewModel()
-    val isShizukuAvailable by shizukuManager.isShizukuAvailable
-    val isShizukuGranted by shizukuManager.isShizukuGranted
-
     Scaffold(
         topBar = {
             TopAppBar(
@@ -94,26 +88,16 @@ fun LunaStoreApp(viewModel: ScriptViewModel = viewModel()) {
                 .fillMaxSize()
                 .padding(padding)
         ) {
-            Column(
-                modifier = Modifier.fillMaxSize()
-            ) {
-                ShizukuStatusIndicator(
-                    isAvailable = isShizukuAvailable,
-                    isGranted = isShizukuGranted
+            if (isLoading) {
+                CircularProgressIndicator(
+                    modifier = Modifier.align(Alignment.Center)
                 )
-
-                if (isLoading) {
-                    CircularProgressIndicator(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(32.dp)
-                    )
-                } else {
-                    LazyColumn(
-                        modifier = Modifier.fillMaxSize(),
-                        contentPadding = PaddingValues(16.dp),
-                        verticalArrangement = Arrangement.spacedBy(12.dp)
-                    ) {
+            } else {
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize(),
+                    contentPadding = PaddingValues(16.dp),
+                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
                     if (scripts.isEmpty()) {
                         item {
                             Text(
@@ -249,7 +233,6 @@ fun ScriptItem(
                             Button(onClick = {
                                 isDownloading = true
                                 onDownload()
-                                // Simulate download completion
                                 kotlinx.coroutines.MainScope().launch {
                                     kotlinx.coroutines.delay(2000)
                                     isDownloading = false
