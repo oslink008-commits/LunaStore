@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">LunaStore</string>
+    <string name="download">Download</string>
+    <string name="play">Play</string>
+    <string name="exit">Exit</string>
+    <string name="lock">Lock</string>
+    <string name="unlock">Unlock</string>
+    <string name="running_in_background">LunaStore đang chạy ở nền</string>
+    <string name="shizuku_required">Yêu cầu Shizuku</string>
+    <string name="shizuku_not_connected">Shizuku chưa kết nối</string>
+    <string name="download_userscript">Download userscript</string>
+    <string name="download_library">Download thư viện</string>
+    <string name="no_scripts_available">Không có scripts nào</string>
+    <string name="loading">Đang tải…</string>
+    <string name="done">Xong</string>
+</resources>
