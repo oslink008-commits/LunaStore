@@ -31,11 +31,10 @@ jobs:
 
       - name: Accept licenses and install components
         run: |
-          export PATH=$HOME/android/cmdline-tools/latest/bin:$PATH
-          yes | sdkmanager --licenses || true
-          sdkmanager "platform-tools"
-          sdkmanager "platforms;android-34"
-          sdkmanager "build-tools;34.0.0"
+          $HOME/android/cmdline-tools/latest/bin/sdkmanager --licenses || true
+          $HOME/android/cmdline-tools/latest/bin/sdkmanager "platform-tools"
+          $HOME/android/cmdline-tools/latest/bin/sdkmanager "platforms;android-34"
+          $HOME/android/cmdline-tools/latest/bin/sdkmanager "build-tools;34.0.0"
 
       - name: Create local.properties
         run: echo "sdk.dir=$HOME/android" > local.properties
