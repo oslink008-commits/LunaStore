@@ -23,7 +23,8 @@ jobs:
         run: |
           wget -q https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip
           unzip -q commandlinetools-linux-9477386_latest.zip
-          mkdir -p $HOME/android/cmdline-tools/latest
+          rm -rf $HOME/android
+          mkdir -p $HOME/android/cmdline-tools
           mv cmdline-tools $HOME/android/cmdline-tools/latest
           echo "ANDROID_HOME=$HOME/android" >> $GITHUB_ENV
           echo "$HOME/android/cmdline-tools/latest/bin" >> $GITHUB_PATH
